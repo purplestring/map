@@ -22,10 +22,43 @@
 
     var map = new BMap.Map("allmap",{mapType:BMAP_SATELLITE_MAP,minZoom:6});//创建地图
 	map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
-    var point = new BMap.Point(116.404, 39.915);
-	var zoom=13; map.centerAndZoom(point, zoom);
+    var point = new BMap.Point(120,30);
+	var zoom=7; map.centerAndZoom(point, zoom);
     map.enableScrollWheelZoom(true); 
 	
+	
+	function addpic(map,picname,lng,lat,url,w,h,zoommin,zoommax, opac)
+	{
+	
+	  var SW = new BMap.Point(lng-w,lat-h);
+  var NE = new BMap.Point(lng+w,lat+h);
+
+  groundOverlayOptions = {
+    opacity:  opac,
+    displayOnMinLevel: zoommin,
+    displayOnMaxLevel: zoommax
+  }
+
+  var groundOverlay = new BMap.GroundOverlay(new BMap.Bounds(SW, NE), groundOverlayOptions);
+
+  groundOverlay.setImageURL(picname);
+  
+   map.addOverlay(groundOverlay);
+   
+   groundOverlay.addEventListener("click", function (event) {
+
+	window.location.href=url;
+	});
+
+
+	}
+	
+
+
+	
+	addpic(map,"aomen.png",113.42,22.2,'http://weibo.com/1759006061/DsTfeBMpl',0.15,0.3,6,12,1);
+	addpic(map,"ningbo.png",121.56,29.86,'http://weibo.com/1759006061/Enj9pnG0N',0.12,0.3,6,12,1);
+	addpic(map,"chengdu.png",104.06,30.67,'http://weibo.com/1759006061/EewevqUa0',0.12,0.3,6,12,1);
 	
 
 	
