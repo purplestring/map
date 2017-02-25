@@ -45,8 +45,10 @@
   
    map.addOverlay(groundOverlay);
    
+tmpfun = map.onclick;
+map.onclick = null;
    groundOverlay.addEventListener("touchstart", function (event) {
-
+map.onclick = tmpfun;
 	window.location.href=url;
 	});
 
