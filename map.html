@@ -45,13 +45,6 @@
   
    map.addOverlay(groundOverlay);
    
-tmpfun = map.onclick;
-map.onclick = null;
-   groundOverlay.addEventListener("touchstart", function (event) {
-map.onclick = tmpfun;
-	window.location.href=url;
-	});
-
    groundOverlay.addEventListener("click", function (event) {
 
 	window.location.href=url;
@@ -70,6 +63,7 @@ map.onclick = tmpfun;
 	addpic(map,"taibei.png",121.50,25.05,'http://weibo.com/1759006061/Em7Tdke3y',0.2,0.3,6,12,1);
 	addpic(map,"nanjing.png",118.78,32.04,'http://weibo.com/1759006061/Edz44yNbg',0.2,0.3,6,12,1);
 	addpic(map,"wuxi.png",120.299,31.568,'http://weibo.com/1759006061/EePgbkXGS',0.2,0.3,6,12,1);
+	addpic(map,"lanzhou.png",103.73,36.03,'http://weibo.com/1759006061/E68l6uHxs',0.15,0.25,6,12,1); 
 	
   
 </script>
