@@ -25,13 +25,43 @@
     var point = new BMap.Point(120,30);
 	var zoom=7; map.centerAndZoom(point, zoom);
     map.enableScrollWheelZoom(true); 
+	var picct=0;
+	var urlall= new Array();
+	var latall= new Array();
+	var lngall= new Array();
+	
+	map.addEventListener("zoomend", function () {
+	if(map.getZoom()>12)
+	{
+	 //alert(map.getCenter().lng+"\n"+map.getCenter().lat);
+	 //alert(urlall[5]);
+		 clng=map.getCenter().lng;
+		 clat=map.getCenter().lat;
+		 for(var ii=0;ii<picct;ii++)
+		 {
+			var d=(clng-lngall[ii])*(clng-lngall[ii])+(clat-latall[ii])*(clat-latall[ii]);
+			if(d<0.1) 
+			{
+				//alert(urlall[ii]);
+				//alert(d);
+				window.location.href=urlall[ii];
+			}
+		 }
+	 
+	}
+
+});
 	
 	
 	function addpic(map,picname,lng,lat,url,w,h,zoommin,zoommax, opac)
 	{
 	
 	  var SW = new BMap.Point(lng-w*2,lat-h*2);
-  var NE = new BMap.Point(lng+w*2,lat+h*2);
+	  var NE = new BMap.Point(lng+w*2,lat+h*2);
+	  urlall[picct]=url;
+	  latall[picct]=lat;
+	  lngall[picct]=lng;
+	  picct++;
 
   groundOverlayOptions = {
     opacity:  opac,
@@ -72,5 +102,7 @@
 	addpic(map,"shenzhen.png",114.07,22.62,'http://weibo.com/1759006061/DAX7vE767',0.15,0.25,6,12,1);
 	addpic(map,"shanghai.png",121.48,31.22,'http://weibo.com/1759006061/DzC8xeBBe',0.15,0.25,6,12,1);	
 	addpic(map,"dongguan.png",113.75,23.04,'http://weibo.com/1759006061/EffTiqNLb',0.12,0.20,6,12,1); 
+	
+
   
 </script>
